@@ -9,7 +9,13 @@ export default function Navbar() {
       className="relative z-10 flex max-w-max flex-1 items-center justify-center min-w-full">
       <div className="flex w-full items-center justify-between gap-12 py-4">
         <div>
-          <a href="#"><img src="/images/placeholders/logos/wicked-word.svg" alt="Logo" className="h-8 w-auto" /></a>
+        <Link href="/">
+            <img 
+                src="/Logo.png" 
+                alt="Dakka booking platform logo, home page link" 
+                className="h-8 w-auto" 
+            />
+        </Link>
         </div>
         <div style={{ position: 'relative' }}>
           <ul data-orientation="horizontal"
@@ -29,12 +35,7 @@ export default function Navbar() {
                 className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
                 data-radix-collection-item="">
                 Use cases 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  className="lucide lucide-chevron-down relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
-                  aria-hidden="true">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
+             
               </button>
             </li>
             <li>
@@ -43,12 +44,7 @@ export default function Navbar() {
                 className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
                 data-radix-collection-item="">
                 Developers 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  className="lucide lucide-chevron-down relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
-                  aria-hidden="true">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
+               
               </button>
             </li>
             <li>
@@ -57,12 +53,7 @@ export default function Navbar() {
                 className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
                 data-radix-collection-item="">
                 Resources 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  className="lucide lucide-chevron-down relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
-                  aria-hidden="true">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
+               
               </button>
             </li>
           </ul>
@@ -72,24 +63,14 @@ export default function Navbar() {
             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
             Log in</button><button
             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-            Start now<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              className="lucide lucide-chevron-right ml-2 size-4">
-              <path d="m9 18 6-6-6-6"></path>
-            </svg>
+            Start now
           </button>
         </div>
         <div className="flex items-center gap-4 lg:hidden">
           <button
             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"
             aria-label="Main Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              className="lucide lucide-menu size-4">
-              <line x1="4" x2="20" y1="12" y2="12"></line>
-              <line x1="4" x2="20" y1="6" y2="6"></line>
-              <line x1="4" x2="20" y1="18" y2="18"></line>
-            </svg>
+           
           </button>
         </div>
       </div>
