@@ -27,12 +27,10 @@ const items = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
-      
+        <Hero />
       <div className="mx-auto max-w-6xl px-4">
         
-        <div className="mt-32">
-          <Hero />
-        </div>
+        
 
         <div className="mt-32">
           <Masonry

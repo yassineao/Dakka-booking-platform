@@ -2,81 +2,68 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
+    <nav className="fixed top-0 left-0 w-full z-50 
+                    bg-black/30 backdrop-blur-lg 
+                    border-b border-white/10 
+                    transition-all duration-300">
+      <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 py-3 mx-auto">
+        
+        <a href="#" className="flex items-center">
+          <img src="/Logo.png" className="h-6 mr-3 sm:h-9" alt="Dakka Nassim Logo" />
+          <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
+            Dakka Nassim
+          </span>
+        </a>
 
-<div className="static inset-x-0 top-0 z-20 bg-background">
-  <div className="container">
-    <nav aria-label="Main" data-orientation="horizontal" dir="ltr"
-      className="relative z-10 flex max-w-max flex-1 items-center justify-center min-w-full">
-      <div className="flex w-full items-center justify-between gap-12 py-4">
-        <div>
-        <Link href="/">
-            <img 
-                src="/Logo.png" 
-                alt="Dakka booking platform logo, home page link" 
-                className="h-8 w-auto" 
-            />
-        </Link>
+        <div className="flex items-center lg:order-2">
+          <a
+            href="#"
+            className="text-white bg-purple-700 hover:bg-purple-800 
+                       focus:ring-4 focus:ring-purple-300 
+                       font-medium rounded-lg text-sm 
+                       px-4 lg:px-5 py-2 lg:py-2.5 
+                       sm:mr-2 lg:mr-0 transition"
+          >
+            Kontaktieren
+          </a>
         </div>
-        <div style={{ position: 'relative' }}>
-          <ul data-orientation="horizontal"
-            className="group flex-1 list-none items-center justify-center space-x-1 hidden lg:flex" dir="ltr">
+
+        <div className="items-center justify-between w-full lg:flex lg:w-auto lg:order-1">
+          <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
             <li>
-              <button id="radix-:R0:-trigger-radix-:Rkb:" data-state="closed" aria-expanded="false"
-                aria-controls="radix-:R0:-content-radix-:Rkb:"
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
-                data-radix-collection-item="">
-                Platform 
-             
-              </button>
+              <a className="block py-2 text-white lg:p-0 hover:text-purple-400 transition">
+                Home
+              </a>
             </li>
             <li>
-              <button id="radix-:R0:-trigger-radix-:R14b:" data-state="closed" aria-expanded="false"
-                aria-controls="radix-:R0:-content-radix-:R14b:"
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
-                data-radix-collection-item="">
-                Use cases 
-             
-              </button>
+              <a className="block py-2 text-gray-300 lg:p-0 hover:text-purple-400 transition">
+                Buchung
+              </a>
             </li>
             <li>
-              <button id="radix-:R0:-trigger-radix-:R1kb:" data-state="closed" aria-expanded="false"
-                aria-controls="radix-:R0:-content-radix-:R1kb:"
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
-                data-radix-collection-item="">
-                Developers 
-               
-              </button>
+              <a className="block py-2 text-gray-300 lg:p-0 hover:text-purple-400 transition">
+                Preis
+              </a>
             </li>
             <li>
-              <button id="radix-:R0:-trigger-radix-:R24b:" data-state="closed" aria-expanded="false"
-                aria-controls="radix-:R0:-content-radix-:R24b:"
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group"
-                data-radix-collection-item="">
-                Resources 
-               
-              </button>
+              <a className="block py-2 text-gray-300 lg:p-0 hover:text-purple-400 transition">
+                Video
+              </a>
+            </li>
+            <li>
+              <a className="block py-2 text-gray-300 lg:p-0 hover:text-purple-400 transition">
+                Packs
+              </a>
+            </li>
+            <li>
+              <a className="block py-2 text-gray-300 lg:p-0 hover:text-purple-400 transition">
+                Contact
+              </a>
             </li>
           </ul>
         </div>
-        <div className="hidden items-center gap-4 lg:flex">
-          <button
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-            Log in</button><button
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-            Start now
-          </button>
-        </div>
-        <div className="flex items-center gap-4 lg:hidden">
-          <button
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"
-            aria-label="Main Menu">
-           
-          </button>
-        </div>
+
       </div>
-      <div className="absolute left-0 top-full flex justify-center"></div>
     </nav>
-  </div>
-</div>
   );
 }
