@@ -59,17 +59,13 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Button */}
-        <div className="hidden lg:flex items-center lg:order-2">
-          <a
-            href="#"
-            className="text-white bg-purple-700 hover:bg-purple-800 
-                       focus:ring-4 focus:ring-purple-300 
-                       font-medium rounded-lg text-sm 
-                       px-4 lg:px-5 py-2 lg:py-2.5 
-                       transition"
-          >
-            Kontaktieren
-          </a>
+        <div className="hidden lg:flex items-center lg:order-2 mr-4">
+          <a className="relative" href="#">
+                    <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-black"></span>
+                    <span className="relative inline-block h-full w-full rounded border-2 border-black bg-white px-2 py-1 text-xl font-bold text-black transition duration-150 hover:bg-black hover:text-white">
+                        Kontaktieren
+                    </span>
+                    </a>
         </div>
 
         {/* Hamburger Button (Mobile Only) */}
