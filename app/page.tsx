@@ -1,4 +1,5 @@
 import Pricing from "./components/Pricing";
+import Socials from "./components/Socials";
 import Masonry from "./components/Masonry";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -74,9 +75,7 @@ export default function Home() {
       
      <div className="mx-auto max-w-6xl px-4">
 
-        <div className="bg-white dark:bg-black">
           <Card />
-        </div>
 
       </div>
 <div className=" bg-black" id="buchung">
@@ -85,23 +84,12 @@ export default function Home() {
         <div className=" " id="packs">
         <Pricing />
       </div>
-      
-      <div className="mx-auto max-w-6xl px-4" id="video"> 
-        <div className="mt-32 bg-black" >
-          <Masonry
-            items={items}
-            ease="power3.out"
-            duration={0.6}
-            stagger={0.05}
-            animateFrom="bottom"
-            scaleOnHover
-            hoverScale={0.95}
-            blurToFocus
-            colorShiftOnHover={false}
-          />
-        </div>
-
+   
+ 
+     <div className=" bg-white py-16" id="packs">
+        <Socials/>
       </div>
+
     </div>
   );
 }

@@ -15,7 +15,7 @@ type Package = {
   featured?: boolean;
 };
 
-type RegionKey = "NRW" | "HESSEN";
+type RegionKey = "NRW" | "HESSEN" | "ANDERER_ORT";
 
 const CheckIcon: React.FC<{ type?: "check" | "x" }> = ({ type = "check" }) => {
   const common = "w-3 h-3";
@@ -61,7 +61,7 @@ const PriceCard: React.FC<{
     : "bg-gray-50 border-transparent hover:border-white hover:shadow-lg";
 
   return (
-    <div className="w-full md:w-2/6 xl:w-1/4">
+    <div className="w-full">
       <div className={`${cardBase} ${cardStyle}`}>
         {pkg.featured && (
           <span className="absolute -top-3 right-6 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
@@ -69,7 +69,7 @@ const PriceCard: React.FC<{
           </span>
         )}
 
-        <span className="mb-4 text-base font-medium tracking-widest text-gray-600 uppercase">
+        <span className="mb-4 text-base tracking-widest text-gray-600 uppercase font-bold">
           {pkg.title}
         </span>
 
@@ -156,7 +156,7 @@ const NRW_PACKAGES: Package[] = [
   {
     title: "Paket 4",
     subtitle: "Paket 1 + Liveband (Männer) mit PA-Anlage (falls getrennt)",
-    price: "2.700€",
+    price: "2.500€",
     items: [
       { text: "Alles aus Paket 1", bold: true },
       { text: "Livemusik mit Liveband (Männer)", bold: true },
@@ -237,7 +237,7 @@ const HESSEN_PACKAGES: Package[] = [
     title: "Paket 4",
     subtitle:
       "Paket 1 + Liveband (Männer) mit PA-Anlage (falls getrennt)",
-    price: "2.500€",
+    price: "2.700€",
     items: [
       { text: "Alles aus Paket 1", bold: true },
       { text: "Livemusik mit Liveband (Männer)", bold: true },
@@ -286,15 +286,20 @@ export default function PreiseRegionen() {
   const [region, setRegion] = useState<RegionKey>("NRW");
 
   const data = useMemo(() => {
-    return region === "NRW" ? NRW_PACKAGES : HESSEN_PACKAGES;
+    if (region === "NRW") return NRW_PACKAGES;
+    if (region === "HESSEN") return HESSEN_PACKAGES;
+    return [];
   }, [region]);
+
+  const regionLabel =
+    region === "NRW" ? "NRW" : region === "HESSEN" ? "Hessen" : "Anderer Ort";
 
   return (
     <section className="py-20">
       <div className="container px-6 mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-medium lg:text-6xl">
-            Preisliste {region}
+            Preisliste {regionLabel}
           </h2>
           <p className="mt-4 text-gray-600">
             Wir bieten mehrere Pakete an – wir freuen uns auf Ihre Rückmeldung.
@@ -309,11 +314,14 @@ export default function PreiseRegionen() {
             <button
               onClick={() => setRegion("NRW")}
               className={`px-5 py-2 rounded-lg text-sm font-semibold transition ${
-                region === "NRW" ? "bg-white shadow text-gray-900" : "text-gray-600"
+                region === "NRW"
+                  ? "bg-white shadow text-gray-900"
+                  : "text-gray-600"
               }`}
             >
               NRW
             </button>
+
             <button
               onClick={() => setRegion("HESSEN")}
               className={`px-5 py-2 rounded-lg text-sm font-semibold transition ${
@@ -324,15 +332,59 @@ export default function PreiseRegionen() {
             >
               Hessen
             </button>
+
+            <button
+              onClick={() => setRegion("ANDERER_ORT")}
+              className={`px-5 py-2 rounded-lg text-sm font-semibold transition ${
+                region === "ANDERER_ORT"
+                  ? "bg-white shadow text-gray-900"
+                  : "text-gray-600"
+              }`}
+            >
+              Anderer Ort
+            </button>
           </div>
         </div>
 
-        {/* Cards */}
-        <div className="flex flex-wrap justify-center gap-3">
-          {data.map((pkg) => (
-            <PriceCard key={`${region}-${pkg.title}`} pkg={pkg} />
-          ))}
-        </div>
+        {/* Content */}
+        {region === "ANDERER_ORT" ? (
+          <div className="mx-auto max-w-2xl rounded-2xl bg-gray-50 p-8 text-center shadow-sm">
+            <h3 className="text-2xl font-semibold text-gray-900">
+              Andere Stadt / anderes Bundesland?
+            </h3>
+            <p className="mt-3 text-gray-600">
+              Kein Problem! Wir kommen auch außerhalb von NRW & Hessen.
+              <br />
+              Schreib uns kurz den <strong>Ort</strong> und das <strong>Datum</strong> – wir senden dir ein
+              individuelles Angebot inkl. Anfahrt.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <a
+                href="https://wa.me/491776889333?text=Hallo%20Dakka%20Nassim,%0A%0AIch%20interessiere%20mich%20für%20eine%20Buchung.%0A%0AOrt:%0ADatum:%0AArt%20der%20Feier:%0APaket:"
+                className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-white font-semibold shadow"
+              >
+                WhatsApp schreiben
+              </a>
+              <a
+                href="/kontakt"
+                className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-blue-600 font-semibold shadow border"
+              >
+                Kontaktformular
+              </a>
+            </div>
+
+            <p className="mt-4 text-sm text-gray-500">
+              Tipp: Je genauer die Infos (Saal / Uhrzeit / Anzahl Programmpunkte), desto schneller bekommst du den Preis.
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {data.map((pkg) => (
+              <PriceCard key={`${region}-${pkg.title}`} pkg={pkg} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
