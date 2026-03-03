@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Pricing from "./components/Pricing";
 import Masonry from "./components/Masonry";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -69,17 +69,24 @@ const items = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-violet-50 dark:bg-black">
-        <Hero />
-      <div className="mx-auto max-w-6xl px-4">
-        
-      <div className="bg-zinc-50 dark:bg-black">
-        <Card />
-          </div>
+      <Hero />
+     
+      
+     <div className="mx-auto max-w-6xl px-4">
+
+        <div className="bg-white dark:bg-black">
+          <Card />
         </div>
-         <div className=" bg-black">
+
+      </div>
+<div className=" bg-black" id="buchung">
         <Buchung />
-          </div>
- <div className="mx-auto max-w-6xl px-4">
+      </div>
+        <div className=" " id="packs">
+        <Pricing />
+      </div>
+      
+      <div className="mx-auto max-w-6xl px-4" id="video"> 
         <div className="mt-32 bg-black" >
           <Masonry
             items={items}

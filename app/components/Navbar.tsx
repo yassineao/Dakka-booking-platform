@@ -26,35 +26,26 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center justify-between w-full lg:w-auto lg:order-1">
           <ul className="flex font-medium lg:flex-row lg:space-x-8">
             <li>
-              <a className="text-white hover:text-purple-400 transition">
+              <a className="text-white hover:text-purple-400 transition" href="#">
                 Home
               </a>
             </li>
             <li>
-              <a className="text-gray-300 hover:text-purple-400 transition">
+              <a className="text-gray-300 hover:text-purple-400 transition" href="#buchung">
                 Buchung
               </a>
             </li>
             <li>
-              <a className="text-gray-300 hover:text-purple-400 transition">
+              <a className="text-gray-300 hover:text-purple-400 transition" href="#packs">
                 Preis
               </a>
             </li>
             <li>
-              <a className="text-gray-300 hover:text-purple-400 transition">
+              <a className="text-gray-300 hover:text-purple-400 transition" href="#video">
                 Video
               </a>
             </li>
-            <li>
-              <a className="text-gray-300 hover:text-purple-400 transition">
-                Packs
-              </a>
-            </li>
-            <li>
-              <a className="text-gray-300 hover:text-purple-400 transition">
-                Contact
-              </a>
-            </li>
+           
           </ul>
         </div>
 
