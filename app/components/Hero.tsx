@@ -46,7 +46,7 @@ export default function Hero() {
           </div>
 
           {/* Video Section */}
-          <div className="md:w-1/2 lg:w-1/3 mt-8 md:mt-0 md:ml-12">
+          <div className="hidden lg:block lg:w-1/3 mt-8 md:mt-0 md:ml-12">
             <video
               className="rounded-xl shadow-2xl w-full"
               autoPlay
