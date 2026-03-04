@@ -24,21 +24,21 @@ export default function Footer() {
         <div>
           <h3 className="mb-4 font-bold">Informationen</h3>
           <ul className="space-y-4 text-zinc-600">
-            <li className="font-medium hover:text-gray-800"><a href="#preise">Preise</a></li>
-            <li className="font-medium hover:text-gray-800"><a href="#kalender">Verfügbarkeit</a></li>
-            <li className="font-medium hover:text-gray-800"><a href="/kontakt">Kontakt</a></li>
-            <li className="font-medium hover:text-gray-800"><a href="#">FAQ</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#packs">Preise</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#buchung">Verfügbarkeit</a></li>
+            {/* <li className="font-medium hover:text-gray-800"><a href="/kontakt">Kontakt</a></li> */}
+            {/* <li className="font-medium hover:text-gray-800"><a href="#">FAQ</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#">Datenschutz</a></li>
-            <li className="font-medium hover:text-gray-800"><a href="#">Impressum</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#">Impressum</a></li> */}
           </ul>
         </div>
 
         <div>
           <h3 className="mb-4 font-bold">Regionen</h3>
           <ul className="space-y-4 text-zinc-600">
-            <li className="font-medium hover:text-gray-800"><a href="#">NRW</a></li>
-            <li className="font-medium hover:text-gray-800"><a href="#">Hessen</a></li>
-            <li className="font-medium hover:text-gray-800"><a href="#">Deutschlandweit</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#nrw">NRW</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#hessen">Hessen</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#deutschlandweit">Deutschlandweit</a></li>
           </ul>
         </div>
 
@@ -139,14 +139,14 @@ export default function Footer() {
 
         <p>© 2026 Dakka Marrakechia Nassim. Alle Rechte vorbehalten.</p>
 
-        <ul className="flex gap-4">
+        {/* <ul className="flex gap-4">
           <li className="whitespace-nowrap underline hover:text-gray-800">
             <a href="#">AGB</a>
           </li>
           <li className="whitespace-nowrap underline hover:text-gray-800">
             <a href="#">Datenschutz</a>
           </li>
-        </ul>
+        </ul> */}
 
       </div>
 

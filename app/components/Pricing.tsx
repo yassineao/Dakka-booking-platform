@@ -97,18 +97,7 @@ const PriceCard: React.FC<{ pkg: Package }> = ({ pkg }) => {
         })}
       </ul>
 
-      <div className="mt-auto pt-8">
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-            `Hallo Dakka Nassim,\n\nIch interessiere mich für ${pkg.title}.\n\nBitte sendet mir ein Angebot.\nDanke!`
-          )}`}
-          target="_blank"
-          rel="noreferrer"
-          className="w-full inline-flex items-center justify-center px-10 py-3.5 text-base font-medium text-blue-600 border-2 border-white shadow-md rounded-xl bg-white"
-        >
-          Anfragen
-        </a>
-      </div>
+      
     </div>
   );
 };
