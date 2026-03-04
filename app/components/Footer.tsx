@@ -91,7 +91,7 @@ export default function Footer() {
             <li className="font-medium">
 
                  <a
-    href="https://www.tiktok.com/@dakka_afrah_nassim"
+    href="https://www.tiktok.com/@dakka_marrakechia_nassim"
     target="_blank"
     rel="noreferrer"
     className="p-2 rounded-lg flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100"
