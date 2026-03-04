@@ -77,18 +77,18 @@ export default function Navbar() {
       >
         <ul className="flex flex-col px-4 pb-4 space-y-3 text-white bg-black/40 backdrop-blur-md">
           <li><a href="#" className="block py-2 hover:text-purple-400">Home</a></li>
-          <li><a href="#" className="block py-2 hover:text-purple-400">Buchung</a></li>
-          <li><a href="#" className="block py-2 hover:text-purple-400">Preis</a></li>
-          <li><a href="#" className="block py-2 hover:text-purple-400">Video</a></li>
-          <li><a href="#" className="block py-2 hover:text-purple-400">Packs</a></li>
-          <li><a href="#" className="block py-2 hover:text-purple-400">Contact</a></li>
+          <li> <a className="block py-2 hover:text-purple-400" href="#buchung">
+                Buchung
+              </a></li>
+          <li><a className="block py-2 hover:text-purple-400" href="#packs">Preis</a></li>
+          <li><a className="block py-2 hover:text-purple-400" href="#video">Video</a></li>
           <li>
             <a
-              href="#"
+              href="https://www.instagram.com/direct/t/17843664710789124/"
               className="block mt-2 text-center bg-purple-700 hover:bg-purple-800 
                          rounded-lg py-2 transition"
             >
-              Kontaktieren
+              Kontaktieren Instagram
             </a>
           </li>
         </ul>
