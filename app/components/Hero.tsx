@@ -17,27 +17,27 @@ export default function Hero() {
           
           <div className="md:w-1/2 lg:w-2/3 min-h-[500px]">
             <h1 className="text-4xl md:text-6xl lg:text-7xl text-white font-bold mb-6">
-              Welcome to Official Dakka Nassim Booking Platform!
+              Willkommen auf der offiziellen Buchungsplattform von Dakka Nassim.
             </h1>
 
             <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8">
-              Best Dakka in the NRW for your weddings and all the parties!
+             Buchen Sie Ihre Dakka für Hochzeiten, Henna, Verlobungen und besondere Feiern in NRW und Umgebung.
             </p>
 
            <div className="flex gap-4">
                 <div className="flex flex-wrap justify-center gap-8">
                     
-                    <a className="relative" href="#">
+                    <a className="relative" href="#buchung">
                     <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-red-600 "></span>
                     <span className="relative inline-block h-full w-full rounded border-2  bg-white px-6 py-4 text-xl font-bold text-black transition duration-150 hover:bg-red-600 hover:text-white">
                         Buch ein Event
                     </span>
                     </a>
 
-                    <a href="#" className="relative">
+                    <a href="#packs" className="relative">
                     <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-gray-700"></span>
                     <span className="relative inline-block h-full w-full rounded border-2 border-black bg-black px-8 py-4 text-xl font-bold text-white transition duration-150 hover:bg-gray-900 hover:text-yellow-500">
-                        Elevated Button Filled
+                       Preise
                     </span>
                     </a>
 

@@ -303,7 +303,7 @@ export default function Navbar() {
   const whatsappHref = useMemo(() => {
     const ortText =
       ortRegion === "ANDERER_ORT"
-        ? `Anderer Ort: ${otherOrt || "-"}`
+        ? `Anderer Ort: ${otherOrt }`
         : `Region: ${ortRegion === "HESSEN" ? "Hessen" : "NRW"}`;
 
     const text = `Hallo Dakka Nassim,
@@ -339,6 +339,47 @@ Danke!`;
     bookingLocation,
     bookingDescription,
   ]);
+
+
+
+const instagramProfileUrl = "https://instagram.com/DEIN_USERNAME";
+
+async function copyBookingText() {
+  const ortText =
+    ortRegion === "ANDERER_ORT"
+      ? `Anderer Ort: ${otherOrt}`
+      : `Region: ${ortRegion === "HESSEN" ? "Hessen" : "NRW"}`;
+
+  const text = `Hallo Dakka Nassim,
+
+Ich möchte anfragen / buchen:
+
+${ortText}
+Datum: ${selectedDate.toLocaleDateString()}
+Uhrzeit: ${pad2(selectedHour)}:00 – ${pad2(
+    (selectedHour + bookingDurationHours) % 24
+  )}:00
+Dauer: ${bookingDurationHours} Stunde(n)
+
+Name: ${bookingName || "-"}
+Anlass: ${anlass}
+Paket: ${paket || "-"}
+
+Saal/Location: ${bookingLocation || "-"}
+Beschreibung: ${bookingDescription || "-"}
+
+Danke!`;
+
+  await navigator.clipboard.writeText(text);
+}
+
+
+
+
+
+
+
+
 
   const canSendWhatsapp =
     bookingName.trim().length > 0 &&

@@ -40,21 +40,21 @@ export default function Navbar() {
                 Preis
               </a>
             </li>
-            <li>
+            {/* <li>
               <a className="text-gray-300 hover:text-purple-400 transition" href="#video">
                 Video
               </a>
-            </li>
+            </li> */}
            
           </ul>
         </div>
 
         {/* Desktop Button */}
         <div className="hidden lg:flex items-center lg:order-2 mr-4">
-          <a className="relative" href="#">
+          <a className="relative" href="https://www.instagram.com/direct/t/17843664710789124/">
                     <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-black"></span>
                     <span className="relative inline-block h-full w-full rounded border-2 border-black bg-white px-2 py-1 text-xl font-bold text-black transition duration-150 hover:bg-black hover:text-white">
-                        Kontaktieren
+                        Kontaktieren Instagram
                     </span>
                     </a>
         </div>
