@@ -83,7 +83,7 @@ export default function Navbar() {
           <li><a className="block py-2 hover:text-purple-400" href="#packs">Preis</a></li>
           <li>
             <a
-              href="https://www.instagram.com/direct/t/17843664710789124/"
+              href="https://www.instagram.com/dakka_marrakechia_nassim/"
               className="block mt-2 text-center bg-purple-700 hover:bg-purple-800 
                          rounded-lg py-2 transition"
             >
