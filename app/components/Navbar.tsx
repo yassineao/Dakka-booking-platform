@@ -81,7 +81,6 @@ export default function Navbar() {
                 Buchung
               </a></li>
           <li><a className="block py-2 hover:text-purple-400" href="#packs">Preis</a></li>
-          <li><a className="block py-2 hover:text-purple-400" href="#video">Video</a></li>
           <li>
             <a
               href="https://www.instagram.com/direct/t/17843664710789124/"
