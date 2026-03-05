@@ -35,7 +35,7 @@ export default function Hero() {
                   besondere Feiern in NRW und Umgebung.
                 </p>
 
-                <div className="flex flex-wrap gap-4 md:gap-6">
+                <div className="flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto">
                   {/* Primary Button */}
                   <a href="#buchung" className="relative">
                     <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-amber-600"></span>
