@@ -37,17 +37,17 @@ export default function Hero() {
 
                 <div className="flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto">
                   {/* Primary Button */}
-                  <a href="#buchung" className="relative">
-                    <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-amber-600"></span>
-                    <span className="relative inline-block h-full w-full rounded border border-amber-500 bg-black px-6 py-4 text-lg md:text-xl font-bold text-white transition duration-200 hover:bg-amber-500 hover:text-black">
+                  <a href="#buchung" className="relative w-full sm:w-auto">
+                    <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-amber-700"></span>
+                    <span className="relative block text-center rounded border border-amber-500 bg-black px-6 py-4 text-base sm:text-lg md:text-xl font-bold text-white transition duration-200 hover:bg-amber-500 hover:text-black">
                       Buch ein Event
                     </span>
                   </a>
 
                   {/* Secondary Button */}
-                  <a href="#packs" className="relative">
-                    <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-amber-600"></span>
-                    <span className="relative inline-block h-full w-full rounded border border-amber-500 bg-black px-8 py-4 text-lg md:text-xl font-bold text-white transition duration-200 hover:bg-amber-500 hover:text-black">
+                  <a href="#packs" className="relative w-full sm:w-auto">
+                    <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-amber-700"></span>
+                    <span className="relative block text-center rounded border border-amber-500 bg-black px-6 py-4 text-base sm:text-lg md:text-xl font-bold text-white transition duration-200 hover:bg-amber-500 hover:text-black">
                       Preise
                     </span>
                   </a>
