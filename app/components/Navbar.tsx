@@ -26,22 +26,22 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center justify-between w-full lg:w-auto lg:order-1">
           <ul className="flex font-medium lg:flex-row lg:space-x-8">
             <li>
-              <a className="text-white hover:text-purple-400 transition" href="#">
+              <a className="text-white hover:text-amber-600 transition" href="#">
                 Home
               </a>
             </li>
             <li>
-              <a className="text-gray-300 hover:text-purple-400 transition" href="#buchung">
+              <a className="text-gray-300 hover:text-amber-600 transition" href="#buchung">
                 Buchung
               </a>
             </li>
             <li>
-              <a className="text-gray-300 hover:text-purple-400 transition" href="#packs">
+              <a className="text-gray-300 hover:text-amber-600 transition" href="#packs">
                 Preis
               </a>
             </li>
             {/* <li>
-              <a className="text-gray-300 hover:text-purple-400 transition" href="#video">
+              <a className="text-gray-300 hover:text-amber-600 transition" href="#video">
                 Video
               </a>
             </li> */}
@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center lg:order-2 mr-4">
           <a className="relative" href="https://www.instagram.com/direct/t/17843664710789124/">
                     <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-black"></span>
-                    <span className="relative inline-block h-full w-full rounded border-2 border-black bg-white px-2 py-1 text-xl font-bold text-black transition duration-150 hover:bg-black hover:text-white">
+                    <span className="relative inline-block h-full w-full rounded border-2 border-black bg-amber-400 px-2 py-1 text-xl font-bold text-black transition duration-150 hover:bg-black hover:text-white">
                         Kontaktieren Instagram
                     </span>
                     </a>
@@ -76,19 +76,21 @@ export default function Navbar() {
                     ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <ul className="flex flex-col px-4 pb-4 space-y-3 text-white bg-black/40 backdrop-blur-md">
-          <li><a href="#" className="block py-2 hover:text-purple-400">Home</a></li>
-          <li> <a className="block py-2 hover:text-purple-400" href="#buchung">
+          <li><a href="#" className="block py-2 hover:text-amber-600">Home</a></li>
+          <li> <a className="block py-2 hover:text-amber-600" href="#buchung">
                 Buchung
               </a></li>
-          <li><a className="block py-2 hover:text-purple-400" href="#packs">Preis</a></li>
+          <li><a className="block py-2 hover:text-amber-600" href="#packs">Preis</a></li>
           <li>
             <a
               href="https://www.instagram.com/dakka_marrakechia_nassim/"
-              className="block mt-2 text-center bg-purple-700 hover:bg-purple-800 
-                         rounded-lg py-2 transition"
+              className=""
             >
+                    <span className="relative inline-block h-full w-1/1.5 rounded border-2 border-black bg-amber-400 px-2 py-1 text-xl font-bold text-black transition duration-150 hover:bg-black hover:text-white">
+                  
               Kontaktieren Instagram
-            </a>
+            
+            </span></a>
           </li>
         </ul>
       </div>
