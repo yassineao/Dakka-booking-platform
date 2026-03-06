@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function Caroussel() {
-  const [activeVideo, setActiveVideo] = useState(null);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const items = [
     {
