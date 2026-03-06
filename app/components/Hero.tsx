@@ -118,7 +118,7 @@ export default function Hero() {
               </div>
 
               {/* RIGHT COLUMN (phone only): video spans 2 rows */}
-              <div className="col-span-1 row-span-2 flex justify-end md:hidden py-24">
+              <div className="col-span-1 row-span-2 flex justify-end md:hidden py-10">
                 <video
                   className="rounded-xl shadow-2xl w-full max-w-[220px] border border-amber-500"
                   autoPlay
