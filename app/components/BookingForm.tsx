@@ -19,6 +19,18 @@ type CalendarEvent = {
   bookedBy?: string;
 };
 
+type ApiTermin = {
+  id: string;
+  name: string;
+  description?: string;
+  exactLocation?: string;
+  bookingType: BookingType;
+  start_date: string;
+  end_date: string;
+  status: "BESTÄTIGT" | string;
+  occasion?: "HOCHZEIT" | string;
+};
+
 const WHATSAPP_NUMBER = "491776889333"; // <- your number (no +)
 
 const COLOR_STYLES: Record<
@@ -143,309 +155,50 @@ export default function BookingForm() {
     if (!sameDay(date, now)) return 0;
     return nextFullHour(now);
   }
+const [events, setEvents] = useState<CalendarEvent[]>([]);
 
- const [events, setEvents] = useState<CalendarEvent[]>([
-  {
-    id: "e1",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Velbert",
-    bookingType: "Wedding",
-    start: new Date(2026, 2, 22, 0, 0),
-    end: new Date(2026, 2, 22, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e2",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Remscheid",
-    bookingType: "Wedding",
-    start: new Date(2026, 2, 28, 0, 0),
-    end: new Date(2026, 2, 28, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e3",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Erkrath",
-    bookingType: "Wedding",
-    start: new Date(2026, 3, 3, 0, 0),
-    end: new Date(2026, 3, 3, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e4",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Willich",
-    bookingType: "Wedding",
-    start: new Date(2026, 3, 4, 0, 0),
-    end: new Date(2026, 3, 4, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e5",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Limburg",
-    bookingType: "Wedding",
-    start: new Date(2026, 3, 5, 0, 0),
-    end: new Date(2026, 3, 5, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e6",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Enschede",
-    bookingType: "Wedding",
-    start: new Date(2026, 3, 17, 0, 0),
-    end: new Date(2026, 3, 17, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e7",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Hilden",
-    bookingType: "Wedding",
-    start: new Date(2026, 3, 18, 0, 0),
-    end: new Date(2026, 3, 18, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e8",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Erkrath",
-    bookingType: "Wedding",
-    start: new Date(2026, 4, 1, 0, 0),
-    end: new Date(2026, 4, 1, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e9",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Frankfurt",
-    bookingType: "Wedding",
-    start: new Date(2026, 4, 2, 0, 0),
-    end: new Date(2026, 4, 2, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e10",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Düsseldorf",
-    bookingType: "Wedding",
-    start: new Date(2026, 4, 9, 0, 0),
-    end: new Date(2026, 4, 9, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e11",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Essen",
-    bookingType: "Wedding",
-    start: new Date(2026, 4, 23, 0, 0),
-    end: new Date(2026, 4, 23, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e12",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Mainz",
-    bookingType: "Wedding",
-    start: new Date(2026, 4, 30, 0, 0),
-    end: new Date(2026, 4, 30, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e13",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Hilden",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 3, 0, 0),
-    end: new Date(2026, 5, 3, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e14",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Frankfurt",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 5, 0, 0),
-    end: new Date(2026, 5, 5, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e15",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Dortmund",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 6, 0, 0),
-    end: new Date(2026, 5, 6, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e16",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Mainz",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 13, 0, 0),
-    end: new Date(2026, 5, 13, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e17",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Wuppertal",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 14, 0, 0),
-    end: new Date(2026, 5, 14, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e18",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Leverkusen",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 20, 0, 0),
-    end: new Date(2026, 5, 20, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e19",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Bielefeld",
-    bookingType: "Wedding",
-    start: new Date(2026, 5, 27, 0, 0),
-    end: new Date(2026, 5, 27, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e20",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Schwerte",
-    bookingType: "Wedding",
-    start: new Date(2026, 8, 5, 0, 0),
-    end: new Date(2026, 8, 5, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e21",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Düsseldorf",
-    bookingType: "Wedding",
-    start: new Date(2026, 8, 12, 0, 0),
-    end: new Date(2026, 8, 12, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e22",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Frankfurt",
-    bookingType: "Wedding",
-    start: new Date(2026, 8, 19, 0, 0),
-    end: new Date(2026, 8, 19, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e23",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Bonn",
-    bookingType: "Wedding",
-    start: new Date(2026, 9, 10, 0, 0),
-    end: new Date(2026, 9, 10, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e24",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Düsseldorf",
-    bookingType: "Wedding",
-    start: new Date(2026, 9, 17, 0, 0),
-    end: new Date(2026, 9, 17, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-  {
-    id: "e25",
-    title: "Wedding",
-    description: "Wedding Event",
-    location: "Aachen",
-    bookingType: "Wedding",
-    start: new Date(2026, 9, 31, 0, 0),
-    end: new Date(2026, 9, 31, 23, 59),
-    color: "emerald",
-    booked: true,
-    bookedBy: "Client",
-  },
-]);
+useEffect(() => {
+  const loadTermine = async () => {
+    try {
+      const res = await fetch("/api/termine");
+
+      if (!res.ok) {
+        throw new Error("Fehler beim Laden der Termine");
+      }
+
+      const data: ApiTermin[] = await res.json();
+
+      const mappedEvents: CalendarEvent[] = data.map((termin) => ({
+        id: termin.id,
+        title: termin.occasion === "HOCHZEIT" ? "Wedding" : termin.name || "Termin",
+        description: termin.description || "",
+        location: termin.exactLocation || "",
+        bookingType:
+          termin.bookingType === "Wedding"
+            ? "Wedding"
+            : termin.bookingType === "Training"
+            ? "Training"
+            : termin.bookingType === "Workshop"
+            ? "Workshop"
+            : termin.bookingType === "Private"
+            ? "Private"
+            : "Meeting",
+        start: new Date(termin.start_date),
+        end: new Date(termin.end_date),
+        color: "emerald",
+        booked: termin.status === "BESTÄTIGT",
+        bookedBy: termin.name || "Client",
+      }));
+
+      setEvents(mappedEvents.sort(sortByStart));
+      console.log("Geladene Termine:", mappedEvents);
+    } catch (error) {
+      console.error("Fehler beim Laden der Termine:", error);
+    }
+  };
+
+  loadTermine();
+}, []);
 
   // ✅ Startmonat = aktueller Monat
   const [activeMonth, setActiveMonth] = useState<Date>(() =>
