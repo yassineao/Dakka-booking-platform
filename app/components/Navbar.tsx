@@ -37,7 +37,7 @@ export default function Navbar() {
             </li>
             <li>
               <a className="text-gray-300 hover:text-amber-600 transition" href="#packs">
-                Preis
+                Pakete
               </a>
             </li>
             {/* <li>

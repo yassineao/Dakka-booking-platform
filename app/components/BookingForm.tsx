@@ -412,6 +412,9 @@ Danke!`;
   const canSendWhatsapp =
     bookingName.trim().length > 0 &&
     bookingLocation.trim().length > 0 &&
+    bookingType.trim().length > 0 &&
+    paket.trim().length > 0 &&
+    otherOrt.trim().length > 0 &&
     (ortRegion !== "ANDERER_ORT" || otherOrt.trim().length > 0);
 
   return (
@@ -425,13 +428,11 @@ Danke!`;
           <div className="grid grid-cols-12 gap-8 max-w-4xl mx-auto xl:max-w-full">
             {/* Left */}
             <div className="col-span-12 xl:col-span-5">
-              <h2 className="font-manrope text-3xl leading-tight text-gray-900 mb-1.5">
-                Buchen
-              </h2>
-              <p className="text-lg font-normal text-gray-600 mb-6">
-                Ausgewählte Zeit: {selectedDate.toLocaleDateString()} ·{" "}
-                {pad2(selectedHour)}:00–{pad2((selectedHour + bookingDurationHours) % 24)}:00
-              </p>
+            <h1 className="mb-4 text-3xl font-bold text-heading md:text-5xl lg:text-6xl">
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-yellow-400 to-yellow-600">
+    Buchung
+  </span>
+</h1>
 
               {/* Hours grid */}
               <div className="p-6 rounded-xl bg-white mb-6">
@@ -486,7 +487,7 @@ Danke!`;
                     {pad2((selectedHour + bookingDurationHours) % 24)}:00
                   </span>
                 </div>
-
+              
                 {/* Availability banner */}
                 {isBookingWindowFree ? (
                   <div className="mb-4 p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700">
@@ -498,8 +499,21 @@ Danke!`;
                     <div className="font-semibold">Slot ist gebucht.</div>
                   </div>
                 )}
-
+                <p className="text-lg font-normal text-gray-600 mb-6">
+                Ausgewählte Zeit: {selectedDate.toLocaleDateString()} ·{" "}
+                {pad2(selectedHour)}:00–{pad2((selectedHour + bookingDurationHours) % 24)}:00
+              </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                   {/* Name */}
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-medium text-gray-700">Name *</label>
+                    <input
+                      value={bookingName}
+                      onChange={(e) => setBookingName(e.target.value)}
+                      placeholder="z.B. Familie Ait Ali"
+                      className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-600"
+                    />
+                  </div>
                   {/* Ort */}
                   <div className="flex flex-col gap-1">
                     <label className="text-xs font-medium text-gray-700">Ort</label>
@@ -517,7 +531,7 @@ Danke!`;
                   {/* Genauer Ort */}
                   <div className="flex flex-col gap-1">
                     <label className="text-xs font-medium text-gray-700">
-                      Genauer Ort
+                      Genauer Ort *
                     </label>
                     <input
                       value={otherOrt}
@@ -527,16 +541,7 @@ Danke!`;
                     />
                   </div>
 
-                  {/* Name */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-xs font-medium text-gray-700">Name *</label>
-                    <input
-                      value={bookingName}
-                      onChange={(e) => setBookingName(e.target.value)}
-                      placeholder="z.B. Familie Ait Ali"
-                      className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-600"
-                    />
-                  </div>
+                 
 
                   {/* Saal/Location */}
                   <div className="flex flex-col gap-1">
@@ -570,12 +575,12 @@ Danke!`;
                   {/* Paket */}
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center justify-between gap-3">
-                      <label className="text-xs font-medium text-gray-700">Paket</label>
+                      <label className="text-xs font-medium text-gray-700">Paket *</label>
                       <a
                         href="#packs"
                         className="text-xs font-semibold text-indigo-600 hover:underline"
                       >
-                        Preise einsehen
+                        Pakete einsehen
                       </a>
                     </div>
 

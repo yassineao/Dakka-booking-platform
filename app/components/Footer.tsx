@@ -24,7 +24,7 @@ export default function Footer() {
         <div>
           <h3 className="mb-4 font-bold">Informationen</h3>
           <ul className="space-y-4 text-zinc-600">
-            <li className="font-medium hover:text-gray-800"><a href="#packs">Preise</a></li>
+            <li className="font-medium hover:text-gray-800"><a href="#packs">Pakete</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#buchung">Verfügbarkeit</a></li>
             {/* <li className="font-medium hover:text-gray-800"><a href="/kontakt">Kontakt</a></li> */}
             {/* <li className="font-medium hover:text-gray-800"><a href="#">FAQ</a></li>

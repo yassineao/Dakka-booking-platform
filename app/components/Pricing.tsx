@@ -56,13 +56,13 @@ const CheckIcon: React.FC<{ type?: "check" | "x" }> = ({ type = "check" }) => {
 const PriceCard: React.FC<{ pkg: Package }> = ({ pkg }) => {
   const cardBase = "relative flex flex-col h-full p-8 rounded-xl border transition";
   const cardStyle = pkg.featured
-    ? "bg-white border-blue-200 shadow-lg"
+    ? "bg-white border-amber-400 shadow-lg" 
     : "bg-gray-50 border-transparent hover:border-white hover:shadow-lg";
 
   return (
     <div className={`${cardBase} ${cardStyle}`}>
       {pkg.featured && (
-        <span className="absolute -top-3 right-6 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
+        <span className="absolute -top-3 right-6 rounded-full bg-amber-600 px-3 py-1 text-xs font-semibold text-white">
           Beliebt
         </span>
       )}
@@ -75,9 +75,7 @@ const PriceCard: React.FC<{ pkg: Package }> = ({ pkg }) => {
         {pkg.subtitle}
       </span>
 
-      <div className="flex items-end text-3xl font-black leading-none text-gray-700 lg:text-4xl">
-        <span>{pkg.price}</span>
-      </div>
+     
 
       <ul className="mt-8">
         {pkg.items.map((it, idx) => {
@@ -309,7 +307,12 @@ Danke!`;
     <section className="py-20">
       <div className="container px-6 mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-medium lg:text-6xl">Preisliste {regionLabel}</h2>
+          <h1 className="mb-4 text-3xl font-bold text-heading md:text-5xl lg:text-6xl">
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-yellow-400 to-yellow-600">
+    Pakete
+  </span>
+  
+</h1>
           <p className="mt-4 text-gray-600">
             Wir bieten mehrere Pakete an – wir freuen uns auf Ihre Rückmeldung.
             <br />
@@ -320,30 +323,7 @@ Danke!`;
         {/* Region Switch */}
         <div className="flex justify-center mb-10">
           <div className="inline-flex rounded-xl bg-gray-100 p-1">
-            <button
-              onClick={() => setRegion("NRW")}
-              className={`px-5 py-2 rounded-lg text-sm font-semibold transition ${
-                region === "NRW" ? "bg-white shadow text-gray-900" : "text-gray-600"
-              }`}
-            >
-              NRW
-            </button>
-            <button
-              onClick={() => setRegion("HESSEN")}
-              className={`px-5 py-2 rounded-lg text-sm font-semibold transition ${
-                region === "HESSEN" ? "bg-white shadow text-gray-900" : "text-gray-600"
-              }`}
-            >
-              Hessen
-            </button>
-            <button
-              onClick={() => setRegion("ANDERER_ORT")}
-              className={`px-5 py-2 rounded-lg text-sm font-semibold transition ${
-                region === "ANDERER_ORT" ? "bg-white shadow text-gray-900" : "text-gray-600"
-              }`}
-            >
-              Anderer Ort
-            </button>
+           
           </div>
         </div>
 

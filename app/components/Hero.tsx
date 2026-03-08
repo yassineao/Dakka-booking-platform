@@ -48,7 +48,7 @@ export default function Hero() {
                   <a href="#packs" className="relative w-full sm:w-auto">
                     <span className="absolute top-0 left-0 mt-2 ml-2 h-full w-full rounded bg-amber-700"></span>
                     <span className="relative block text-center rounded border border-amber-500 bg-black px-6 py-4 text-base sm:text-lg md:text-xl font-bold text-white transition duration-200 hover:bg-amber-500 hover:text-black">
-                      Preise
+                      Pakete
                     </span>
                   </a>
                   
