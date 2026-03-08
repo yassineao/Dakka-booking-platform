@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 type Termin = {
   id: number;
   title: string;
@@ -14,16 +16,31 @@ type Termin = {
 export default function TestTerminePage() {
   const [termine, setTermine] = useState<Termin[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const loadTermine = async () => {
       try {
-        const res = await fetch("/api/termine"); // deine API
-        const data = await res.json();
+        if (!API_BASE_URL) {
+          throw new Error("NEXT_PUBLIC_API_BASE_URL is not set");
+        }
+
+        const res = await fetch(`${API_BASE_URL}/api/termine`, {
+          cache: "no-store",
+        });
+
+        if (!res.ok) {
+          throw new Error(`Request failed: ${res.status}`);
+        }
+
+        const text = await res.text();
+        const data = text ? JSON.parse(text) : [];
+
         console.log("Geladene Termine:", data);
-        setTermine(data);
+        setTermine(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error loading termine", err);
+        setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
       }
@@ -37,8 +54,8 @@ export default function TestTerminePage() {
       <h1>Termine Testseite</h1>
 
       {loading && <p>Lade Termine...</p>}
-
-      {!loading && termine.length === 0 && <p>Keine Termine gefunden</p>}
+      {error && <p>Fehler: {error}</p>}
+      {!loading && !error && termine.length === 0 && <p>Keine Termine gefunden</p>}
 
       <ul>
         {termine.map((termin) => (
