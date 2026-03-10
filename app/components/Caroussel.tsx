@@ -91,7 +91,10 @@ export default function Caroussel() {
                         loop
                         playsInline
                         autoPlay
-                      />
+                        preload="metadata"
+                      >
+                      </video>
+                      
                     ) : (
                       <img
                         className="h-48 w-full object-cover"

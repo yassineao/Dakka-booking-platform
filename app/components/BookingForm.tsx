@@ -155,50 +155,52 @@ export default function BookingForm() {
     if (!sameDay(date, now)) return 0;
     return nextFullHour(now);
   }
-const [events, setEvents] = useState<CalendarEvent[]>([]);
 
-useEffect(() => {
-  const loadTermine = async () => {
-    try {
-      const res = await fetch("/api/termine");
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [isSubmittingWhatsapp, setIsSubmittingWhatsapp] = useState(false);
 
-      if (!res.ok) {
-        throw new Error("Fehler beim Laden der Termine");
+  useEffect(() => {
+    const loadTermine = async () => {
+      try {
+        const res = await fetch("/api/termine");
+
+        if (!res.ok) {
+          throw new Error("Fehler beim Laden der Termine");
+        }
+
+        const data: ApiTermin[] = await res.json();
+
+        const mappedEvents: CalendarEvent[] = data.map((termin) => ({
+          id: termin.id,
+          title: termin.occasion === "HOCHZEIT" ? "Wedding" : termin.name || "Termin",
+          description: termin.description || "",
+          location: termin.exactLocation || "",
+          bookingType:
+            termin.bookingType === "Wedding"
+              ? "Wedding"
+              : termin.bookingType === "Training"
+              ? "Training"
+              : termin.bookingType === "Workshop"
+              ? "Workshop"
+              : termin.bookingType === "Private"
+              ? "Private"
+              : "Meeting",
+          start: new Date(termin.start_date),
+          end: new Date(termin.end_date),
+          color: "emerald",
+          booked: termin.status === "BESTÄTIGT",
+          bookedBy: termin.name || "Client",
+        }));
+
+        setEvents(mappedEvents.sort(sortByStart));
+        console.log("Geladene Termine:", mappedEvents);
+      } catch (error) {
+        console.error("Fehler beim Laden der Termine:", error);
       }
+    };
 
-      const data: ApiTermin[] = await res.json();
-
-      const mappedEvents: CalendarEvent[] = data.map((termin) => ({
-        id: termin.id,
-        title: termin.occasion === "HOCHZEIT" ? "Wedding" : termin.name || "Termin",
-        description: termin.description || "",
-        location: termin.exactLocation || "",
-        bookingType:
-          termin.bookingType === "Wedding"
-            ? "Wedding"
-            : termin.bookingType === "Training"
-            ? "Training"
-            : termin.bookingType === "Workshop"
-            ? "Workshop"
-            : termin.bookingType === "Private"
-            ? "Private"
-            : "Meeting",
-        start: new Date(termin.start_date),
-        end: new Date(termin.end_date),
-        color: "emerald",
-        booked: termin.status === "BESTÄTIGT",
-        bookedBy: termin.name || "Client",
-      }));
-
-      setEvents(mappedEvents.sort(sortByStart));
-      console.log("Geladene Termine:", mappedEvents);
-    } catch (error) {
-      console.error("Fehler beim Laden der Termine:", error);
-    }
-  };
-
-  loadTermine();
-}, []);
+    loadTermine();
+  }, []);
 
   // ✅ Startmonat = aktueller Monat
   const [activeMonth, setActiveMonth] = useState<Date>(() =>
@@ -414,8 +416,49 @@ Danke!`;
     bookingLocation.trim().length > 0 &&
     bookingType.trim().length > 0 &&
     paket.trim().length > 0 &&
-    otherOrt.trim().length > 0 &&
     (ortRegion !== "ANDERER_ORT" || otherOrt.trim().length > 0);
+
+  async function handleWhatsappSubmit() {
+    if (!canSendWhatsapp || !isBookingWindowFree) return;
+
+    try {
+      setIsSubmittingWhatsapp(true);
+
+      const res = await fetch("/api/termine", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bookingName,
+          ortRegion,
+          otherOrt,
+          anlass,
+          paket,
+          bookingLocation,
+          bookingType,
+          bookingDescription,
+          selectedDate: selectedDate.toISOString(),
+          selectedHour,
+          bookingDurationHours,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+      
+        return;
+      }
+
+      window.open(data.whatsappUrl, "_blank", "noopener,noreferrer");
+    } catch (error) {
+      console.error("Fehler beim Speichern der WhatsApp-Anfrage:", error);
+ 
+    } finally {
+      setIsSubmittingWhatsapp(false);
+    }
+  }
 
   return (
     <section className="relative bg-stone-50">
@@ -428,11 +471,11 @@ Danke!`;
           <div className="grid grid-cols-12 gap-8 max-w-4xl mx-auto xl:max-w-full">
             {/* Left */}
             <div className="col-span-12 xl:col-span-5">
-            <h1 className="mb-4 text-3xl font-bold text-heading md:text-5xl lg:text-6xl">
-  <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-yellow-400 to-yellow-600">
-    Buchung
-  </span>
-</h1>
+              <h1 className="mb-4 text-3xl font-bold text-heading md:text-5xl lg:text-6xl">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-yellow-400 to-yellow-600">
+                  Buchung
+                </span>
+              </h1>
 
               {/* Hours grid */}
               <div className="p-6 rounded-xl bg-white mb-6">
@@ -487,7 +530,7 @@ Danke!`;
                     {pad2((selectedHour + bookingDurationHours) % 24)}:00
                   </span>
                 </div>
-              
+
                 {/* Availability banner */}
                 {isBookingWindowFree ? (
                   <div className="mb-4 p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700">
@@ -500,11 +543,11 @@ Danke!`;
                   </div>
                 )}
                 <p className="text-lg font-normal text-gray-600 mb-6">
-                Ausgewählte Zeit: {selectedDate.toLocaleDateString()} ·{" "}
-                {pad2(selectedHour)}:00–{pad2((selectedHour + bookingDurationHours) % 24)}:00
-              </p>
+                  Ausgewählte Zeit: {selectedDate.toLocaleDateString()} ·{" "}
+                  {pad2(selectedHour)}:00–{pad2((selectedHour + bookingDurationHours) % 24)}:00
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                   {/* Name */}
+                  {/* Name */}
                   <div className="flex flex-col gap-1">
                     <label className="text-xs font-medium text-gray-700">Name *</label>
                     <input
@@ -540,8 +583,6 @@ Danke!`;
                       className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-600 disabled:bg-gray-50"
                     />
                   </div>
-
-                 
 
                   {/* Saal/Location */}
                   <div className="flex flex-col gap-1">
@@ -641,19 +682,19 @@ Danke!`;
                 </div>
 
                 <div className="mt-4 flex flex-col sm:flex-row gap-2">
-                  <a
-                    href={whatsappHref}
-                    target="_blank"
-                    rel="noreferrer"
+                  <button
+                    type="button"
+                    onClick={handleWhatsappSubmit}
+                    disabled={!canSendWhatsapp || !isBookingWindowFree || isSubmittingWhatsapp}
                     className={[
                       "px-4 py-2 rounded-lg text-sm font-semibold transition-all text-center",
-                      canSendWhatsapp
+                      canSendWhatsapp && isBookingWindowFree && !isSubmittingWhatsapp
                         ? "bg-green-600 text-white hover:bg-green-700"
-                        : "bg-gray-200 text-gray-500 pointer-events-none",
+                        : "bg-gray-200 text-gray-500 cursor-not-allowed",
                     ].join(" ")}
                   >
-                    Per WhatsApp senden
-                  </a>
+                    {isSubmittingWhatsapp ? "Speichert..." : "Per WhatsApp senden"}
+                  </button>
 
                   <button
                     type="button"
@@ -667,7 +708,7 @@ Danke!`;
                 {!canSendWhatsapp && (
                   <p className="mt-3 text-xs text-gray-500">
                     Bitte mindestens <strong>Name</strong>,{" "}
-                    <strong>Saal/Location</strong> und bei{" "}
+                    <strong>Saal/Location</strong>, <strong>Paket</strong> und bei{" "}
                     <strong>Anderer Ort</strong> den genauen Ort ausfüllen.
                   </p>
                 )}

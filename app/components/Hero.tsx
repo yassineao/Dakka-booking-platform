@@ -108,10 +108,13 @@ export default function Hero() {
                   loop
                   muted
                   playsInline
+                  preload="metadata"
+                  poster="/video-thumb.jpg"
                 >
+                  <source src="/Dakka.webm" type="video/webm" />
                   <source src="/Dakka.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
                 </video>
+                
               </div>
             </div>
             
