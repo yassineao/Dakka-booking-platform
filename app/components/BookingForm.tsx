@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 
 type BookingType = "Meeting" | "Training" | "Workshop" | "Private" | "Wedding";
 type Anlass = "Hochzeit" | "Henna" | "Verlobung" | "Geburtstag" | "Sonstiges";
@@ -158,6 +159,13 @@ export default function BookingForm() {
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [isSubmittingWhatsapp, setIsSubmittingWhatsapp] = useState(false);
+  const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 8000);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   useEffect(() => {
     const loadTermine = async () => {
@@ -438,7 +446,7 @@ Danke!`;
           bookingLocation,
           bookingType,
           bookingDescription,
-          selectedDate: selectedDate.toISOString(),
+          selectedDate: `${selectedDate.getFullYear()}-${pad2(selectedDate.getMonth() + 1)}-${pad2(selectedDate.getDate())}`,
           selectedHour,
           bookingDurationHours,
         }),
@@ -447,20 +455,22 @@ Danke!`;
       const data = await res.json();
 
       if (!res.ok) {
-      
+        setToast({ type: "error", message: data.error || "Etwas ist schiefgelaufen." });
         return;
       }
 
+      setToast({ type: "success", message: "Anfrage wurde erfolgreich gesendet! Bitte überprüfen Sie das WhatsApp-Fenster und senden Sie die Nachricht." });
       window.open(data.whatsappUrl, "_blank", "noopener,noreferrer");
     } catch (error) {
       console.error("Fehler beim Speichern der WhatsApp-Anfrage:", error);
- 
+      setToast({ type: "error", message: "Verbindungsfehler. Bitte versuche es erneut." });
     } finally {
       setIsSubmittingWhatsapp(false);
     }
   }
 
   return (
+    <>
     <section className="relative bg-stone-50">
       <div className="bg-sky-400 w-full sm:w-40 h-40 rounded-full absolute top-1 opacity-20 max-sm:right-0 sm:left-56 z-0" />
       <div className="bg-emerald-500 w-full sm:w-40 h-24 absolute top-0 -left-0 opacity-20 z-0" />
@@ -854,5 +864,41 @@ Danke!`;
         </div>
       </div>
     </section>
+
+    {/* Toast popup */}
+    {typeof document !== "undefined" && toast && createPortal(
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] animate-slide-up">
+        <div
+          className={[
+            "flex items-center gap-4 px-6 py-5 rounded-2xl shadow-2xl border backdrop-blur-sm max-w-md min-w-[320px]",
+            toast.type === "success"
+              ? "bg-emerald-50 border-emerald-200 text-emerald-800"
+              : "bg-red-50 border-red-200 text-red-800",
+          ].join(" ")}
+        >
+          {toast.type === "success" ? (
+            <svg className="w-7 h-7 flex-shrink-0 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          ) : (
+            <svg className="w-7 h-7 flex-shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          )}
+          <span className="text-base font-semibold">{toast.message}</span>
+          <button
+            onClick={() => setToast(null)}
+            className="ml-auto text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Schließen"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>,
+      document.body
+    )}
+    </>
   );
 }
