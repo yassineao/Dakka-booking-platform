@@ -867,10 +867,10 @@ Danke!`;
 
     {/* Toast popup */}
     {typeof document !== "undefined" && toast && createPortal(
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] animate-slide-up">
+      <div className="fixed bottom-4 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-[9999] animate-slide-up">
         <div
           className={[
-            "flex items-center gap-4 px-6 py-5 rounded-2xl shadow-2xl border backdrop-blur-sm max-w-md min-w-[320px]",
+            "flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5 rounded-2xl shadow-2xl border backdrop-blur-sm w-full sm:max-w-md sm:min-w-[320px]",
             toast.type === "success"
               ? "bg-emerald-50 border-emerald-200 text-emerald-800"
               : "bg-red-50 border-red-200 text-red-800",
