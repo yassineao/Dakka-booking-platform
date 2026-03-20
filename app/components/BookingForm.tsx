@@ -431,8 +431,24 @@ Danke!`;
     paket.trim().length > 0 &&
     (ortRegion !== "ANDERER_ORT" || otherOrt.trim().length > 0);
 
+  function openWhatsappWithFallback(url: string, popup: Window | null) {
+    if (popup && !popup.closed) {
+      popup.location.href = url;
+      return;
+    }
+
+    const opened = window.open(url, "_blank", "noopener,noreferrer");
+
+    // Safari/iOS can block async window.open; fallback to same-tab redirect.
+    if (!opened) {
+      window.location.href = url;
+    }
+  }
+
   async function handleWhatsappSubmit() {
     if (!canSendWhatsapp || !isBookingWindowFree) return;
+
+    const popup = window.open("", "_blank");
 
     try {
       setIsSubmittingWhatsapp(true);
@@ -461,13 +477,19 @@ Danke!`;
       const data = await res.json();
 
       if (!res.ok) {
+        if (popup && !popup.closed) {
+          popup.close();
+        }
         setToast({ type: "error", message: data.error || "Etwas ist schiefgelaufen." });
         return;
       }
 
       setToast({ type: "success", message: "Anfrage wurde erfolgreich gesendet! Bitte überprüfen Sie das WhatsApp-Fenster und senden Sie die Nachricht." });
-      window.open(data.whatsappUrl, "_blank", "noopener,noreferrer");
+      openWhatsappWithFallback(data.whatsappUrl, popup);
     } catch (error) {
+      if (popup && !popup.closed) {
+        popup.close();
+      }
       console.error("Fehler beim Speichern der WhatsApp-Anfrage:", error);
       setToast({ type: "error", message: "Verbindungsfehler. Bitte versuche es erneut." });
     } finally {
