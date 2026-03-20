@@ -7,6 +7,7 @@ type RegionOrt = "NRW" | "HESSEN" | "ANDERER_ORT";
 
 type BookingRequestBody = {
   bookingName: string;
+  bookingPhoneNumber: string;
   ortRegion: RegionOrt;
   otherOrt: string;
   anlass: Anlass;
@@ -38,6 +39,7 @@ const ALLOWED_ANLASS = new Set<Anlass>([
 const ALLOWED_REGIONEN = new Set<RegionOrt>(["NRW", "HESSEN", "ANDERER_ORT"]);
 
 const MAX_NAME_LENGTH = 100;
+const MAX_PHONE_NUMBER_LENGTH = 30;
 const MAX_LOCATION_LENGTH = 150;
 const MAX_PAKET_LENGTH = 100;
 const MAX_OTHER_ORT_LENGTH = 150;
@@ -101,6 +103,7 @@ Uhrzeit: ${pad2(body.selectedHour)}:00 – ${pad2(
 Dauer: ${body.bookingDurationHours} Stunde(n)
 
 Name: ${body.bookingName || "-"}
+Telefon: ${body.bookingPhoneNumber || "-"}
 Anlass: ${body.anlass}
 Paket: ${body.paket || "-"}
 
@@ -120,6 +123,7 @@ function validateAndNormalizeBody(input: unknown):
   const raw = input as Record<string, unknown>;
 
   const bookingName = sanitizeText(raw.bookingName, MAX_NAME_LENGTH);
+  const bookingPhoneNumber = sanitizeText(raw.bookingPhoneNumber, MAX_PHONE_NUMBER_LENGTH);
   const ortRegion = raw.ortRegion;
   const otherOrt = sanitizeText(raw.otherOrt, MAX_OTHER_ORT_LENGTH);
   const anlass = raw.anlass;
@@ -133,6 +137,10 @@ function validateAndNormalizeBody(input: unknown):
 
   if (!bookingName) {
     return { success: false, error: "Name ist erforderlich." };
+  }
+
+  if (!bookingPhoneNumber) {
+    return { success: false, error: "Telefonnummer ist erforderlich." };
   }
 
   if (!ALLOWED_REGIONEN.has(ortRegion as RegionOrt)) {
@@ -173,6 +181,7 @@ function validateAndNormalizeBody(input: unknown):
 
   const normalized: BookingRequestBody = {
     bookingName,
+    bookingPhoneNumber,
     ortRegion: ortRegion as RegionOrt,
     otherOrt,
     anlass: anlass as Anlass,
@@ -240,6 +249,7 @@ export async function POST(req: Request) {
         region,
         exact_location,
         name,
+        phone_number,
         hall_or_location,
         occasion,
         package_name,
@@ -254,6 +264,7 @@ export async function POST(req: Request) {
         ${body.ortRegion},
         ${body.ortRegion === "ANDERER_ORT" ? body.otherOrt : body.bookingLocation},
         ${body.bookingName},
+        ${body.bookingPhoneNumber},
         ${body.bookingLocation},
         ${mapAnlassToDb(body.anlass)},
         ${body.paket},

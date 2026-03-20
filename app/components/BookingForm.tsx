@@ -233,6 +233,7 @@ export default function BookingForm() {
 
   // booking fields
   const [bookingName, setBookingName] = useState("");
+  const [bookingPhoneNumber, setBookingPhoneNumber] = useState("");
   const [bookingLocation, setBookingLocation] = useState("");
   const [bookingType, setBookingType] = useState<BookingType>("Meeting");
   const [bookingDescription, setBookingDescription] = useState("");
@@ -347,6 +348,7 @@ export default function BookingForm() {
 
   function resetBookingForm() {
     setBookingName("");
+    setBookingPhoneNumber("");
     setBookingLocation("");
     setBookingType("Meeting");
     setBookingDescription("");
@@ -397,6 +399,7 @@ Uhrzeit: ${pad2(selectedHour)}:00 – ${pad2(
 Dauer: ${bookingDurationHours} Stunde(n)
 
 Name: ${bookingName || "-"}
+Telefon: ${bookingPhoneNumber || "-"}
 Anlass: ${anlass}
 Paket: ${paket || "-"}
 
@@ -413,6 +416,7 @@ Danke!`;
     selectedHour,
     bookingDurationHours,
     bookingName,
+    bookingPhoneNumber,
     anlass,
     paket,
     bookingLocation,
@@ -421,6 +425,7 @@ Danke!`;
 
   const canSendWhatsapp =
     bookingName.trim().length > 0 &&
+    bookingPhoneNumber.trim().length > 0 &&
     bookingLocation.trim().length > 0 &&
     bookingType.trim().length > 0 &&
     paket.trim().length > 0 &&
@@ -439,6 +444,7 @@ Danke!`;
         },
         body: JSON.stringify({
           bookingName,
+          bookingPhoneNumber,
           ortRegion,
           otherOrt,
           anlass,
@@ -581,6 +587,17 @@ Danke!`;
                     </select>
                   </div>
 
+                  {/* Telefon */}
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-medium text-gray-700">Telefonnummer *</label>
+                    <input
+                      value={bookingPhoneNumber}
+                      onChange={(e) => setBookingPhoneNumber(e.target.value)}
+                      placeholder="z.B. +49 176 12345678"
+                      className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-600"
+                    />
+                  </div>
+
                   {/* Genauer Ort */}
                   <div className="flex flex-col gap-1">
                     <label className="text-xs font-medium text-gray-700">
@@ -718,6 +735,7 @@ Danke!`;
                 {!canSendWhatsapp && (
                   <p className="mt-3 text-xs text-gray-500">
                     Bitte mindestens <strong>Name</strong>,{" "}
+                    <strong>Telefonnummer</strong>,{" "}
                     <strong>Saal/Location</strong>, <strong>Paket</strong> und bei{" "}
                     <strong>Anderer Ort</strong> den genauen Ort ausfüllen.
                   </p>
