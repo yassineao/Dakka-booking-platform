@@ -138,6 +138,9 @@ export default function Footer() {
         className="mt-24 flex flex-col flex-wrap justify-between gap-4 border-t pt-8 text-sm font-medium text-zinc-600 md:flex-row md:items-center">
 
         <p>© 2026 Dakka Marrakechia Nassim. Alle Rechte vorbehalten.</p>
+        <p className="text-sm text-zinc-500">
+          Powered by <span className="font-semibold text-zinc-800">Gloyoo</span>
+        </p>
 
         {/* <ul className="flex gap-4">
           <li className="whitespace-nowrap underline hover:text-gray-800">
