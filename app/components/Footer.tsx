@@ -1,17 +1,19 @@
 "use client";
 export default function Footer() {
   return (
-<section className="py-10">
+<section className="py-8 sm:py-12">
   <div className="container">
-    <footer>
+    <footer className="mx-auto w-full">
 
-      <img src="/Logo.png" alt="Dakka Marrakechia Nassim" className="h-10" />
+      <div className="flex justify-center sm:justify-start">
+        <img src="/Logo.png" alt="Dakka Marrakechia Nassim" className="h-11 w-auto" />
+      </div>
 
-      <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-4">
+      <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-9 sm:mt-12 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-4">
 
         <div>
-          <h3 className="mb-4 font-bold">Leistungen</h3>
-          <ul className="space-y-4 text-zinc-600">
+          <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-zinc-950 sm:text-base sm:normal-case sm:tracking-normal">Leistungen</h3>
+          <ul className="space-y-2.5 text-sm text-zinc-600 sm:space-y-4 sm:text-base">
             <li className="font-medium hover:text-gray-800"><a href="#leistungen">Brautabholung</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#leistungen">Saalempfang</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#leistungen">Gästeempfang</a></li>
@@ -22,8 +24,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="mb-4 font-bold">Informationen</h3>
-          <ul className="space-y-4 text-zinc-600">
+          <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-zinc-950 sm:text-base sm:normal-case sm:tracking-normal">Informationen</h3>
+          <ul className="space-y-2.5 text-sm text-zinc-600 sm:space-y-4 sm:text-base">
             <li className="font-medium hover:text-gray-800"><a href="#packs">Pakete</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#buchung">Verfügbarkeit</a></li>
             {/* <li className="font-medium hover:text-gray-800"><a href="/kontakt">Kontakt</a></li> */}
@@ -33,25 +35,25 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
-          <h3 className="mb-4 font-bold">Regionen</h3>
-          <ul className="space-y-4 text-zinc-600">
+        <div className="col-span-2 sm:col-span-1">
+          <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-zinc-950 sm:text-base sm:normal-case sm:tracking-normal">Regionen</h3>
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm text-zinc-600 sm:block sm:space-y-4 sm:text-base">
             <li className="font-medium hover:text-gray-800"><a href="#nrw">NRW</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#hessen">Hessen</a></li>
             <li className="font-medium hover:text-gray-800"><a href="#deutschlandweit">Deutschlandweit</a></li>
           </ul>
         </div>
 
-        <div className="lg:col-span-2 xl:col-span-1">
+        <div className="col-span-2 rounded-lg border border-zinc-200 bg-white/80 p-4 shadow-sm lg:col-span-2 xl:col-span-1">
 
-          <ul className="mb-10 flex items-center gap-2 text-zinc-600">
+          <ul className="mb-5 flex items-center gap-3 text-zinc-600">
 
             <li className="font-medium">
               <a
     href="https://www.instagram.com/dakka_marrakechia_nassim/"
     target="_blank"
     rel="noreferrer"
-    className="p-2 rounded-lg flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100"
+    className="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-300 bg-white transition-all duration-300 hover:border-gray-100 hover:bg-gray-100"
     aria-label="Instagram"
     title="Instagram"
   >
@@ -69,7 +71,7 @@ export default function Footer() {
     href="https://wa.me/491776889333"
     target="_blank"
     rel="noreferrer"
-    className="p-2 rounded-lg flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100"
+    className="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-300 bg-white transition-all duration-300 hover:border-gray-100 hover:bg-gray-100"
     aria-label="WhatsApp"
     title="WhatsApp"
   >
@@ -94,7 +96,7 @@ export default function Footer() {
     href="https://www.tiktok.com/@dakka_marrakechia_nassim"
     target="_blank"
     rel="noreferrer"
-    className="p-2 rounded-lg flex items-center border border-gray-300 justify-center transition-all duration-500 hover:border-gray-100 hover:bg-gray-100"
+    className="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-300 bg-white transition-all duration-300 hover:border-gray-100 hover:bg-gray-100"
     aria-label="TikTok"
     title="TikTok"
   >
@@ -109,17 +111,17 @@ export default function Footer() {
 
           </ul>
 
-          <div className="grid w-full max-w-sm items-center gap-1.5">
+          <div className="grid w-full items-center gap-1.5">
 
-            <label className="text-sm font-medium">
+            <label className="text-sm font-semibold text-zinc-950">
               Angebot anfragen
             </label>
 
-            <div className="flex w-full max-w-sm items-center space-x-2">
+            <div className="flex w-full items-center">
 
               <a
                 href="https://wa.me/491776889333?text=Hallo%20Dakka%20Nassim,%0A%0AIch%20m%C3%B6chte%20eine%20Anfrage%20stellen."
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-zinc-900 text-white hover:bg-zinc-900/90 h-10 px-4 py-2">
+                className="inline-flex h-11 w-full items-center justify-center rounded-md bg-zinc-900 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900/90 sm:w-auto">
                 WhatsApp Anfrage
               </a>
 
@@ -135,12 +137,12 @@ export default function Footer() {
       </div>
 
       <div
-        className="mt-24 flex flex-col flex-wrap justify-between gap-4 border-t pt-8 text-sm font-medium text-zinc-600 md:flex-row md:items-center">
+        className="mt-10 flex flex-col flex-wrap items-center justify-between gap-3 border-t pt-6 text-center text-xs font-medium text-zinc-600 sm:mt-16 sm:pt-8 sm:text-sm md:flex-row md:text-left">
 
         <p>© 2026 Dakka Marrakechia Nassim. Alle Rechte vorbehalten.</p>
-        <p className="text-sm text-zinc-500">
-          Powered by <span className="font-semibold text-zinc-800">Gloyoo</span>
-        </p>
+        <a href="https://gloyoo.vercel.app/en" target="_blank" rel="noreferrer" className="text-sm text-zinc-500 ">
+          Powered by <span className="font-semibold text-blue-800  ">Gloyoo  </span>
+        </a>
 
         {/* <ul className="flex gap-4">
           <li className="whitespace-nowrap underline hover:text-gray-800">
